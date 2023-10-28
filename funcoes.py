@@ -1,12 +1,18 @@
-""" 
+"""
 Funções gerais para uma aplicação de console como limpar a tela e imprimir o cabeçalho
 """
 import os
 import json
 
 
+if __name__ == "__main__":
+    from main import sys_fitness
+
+    sys_fitness()
+
+
 def limpa_tela():
-    """ Limpa o console e imprime o cabeçalho do programa. """
+    """Limpa o console e imprime o cabeçalho do programa."""
     if os.name == "nt":
         os.system("cls")
     else:
@@ -15,7 +21,7 @@ def limpa_tela():
 
 
 def print_cabecalho():
-    """ Imprime o cabeçalho do programa """
+    """Imprime o cabeçalho do programa"""
     cabecalho = """
   ************************************************************
   *                        SysFitness                        *
@@ -25,7 +31,7 @@ def print_cabecalho():
 
 
 def print_aluno(arq: dict, i):
-    """ Imprime os dados de um ou mais alunos.
+    """Imprime os dados de um ou mais alunos.
 
     Entradas:
     - `arq`: Recebe o dicionário que contém todos os alunos e configurações do aplicativo
@@ -67,7 +73,7 @@ def print_aluno(arq: dict, i):
 
 
 def ler_int(msg="Digite um número: "):
-    """ Lê um inteiro validado e retorna ele. """
+    """Lê uma string contendo um número Inteiro e retorna ele."""
     while True:
         num = input(msg)
         if num == "":
@@ -80,7 +86,7 @@ def ler_int(msg="Digite um número: "):
 
 
 def ler_float(msg="Digite um número: "):
-    """ Lê um número Real validado e retorna ele. """
+    """Lê uma string contendo um número Real e retorna ele."""
     while True:
         num = input(msg)
         try:
@@ -90,7 +96,7 @@ def ler_float(msg="Digite um número: "):
 
 
 def ler_str(msg="Digite: "):
-    """ Lê uma string não vazia e retorna ela. """
+    """Lê uma string não vazia e retorna ela."""
     while True:
         texto = input(msg)
         if texto != "":
@@ -100,7 +106,7 @@ def ler_str(msg="Digite: "):
 
 
 def ler_sexo(msg="Digite o sexo (Masc, Fem, Nao binario): "):
-    """ Lê uma string que deve ser estritamente "masc", "fem" ou "nao binario" e a retorna. """
+    """Lê uma string que deve ser estritamente "masc", "fem" ou "nao binario" e a retorna."""
     while True:
         sexo = input(msg).lower()
         if sexo in ["masc", "fem", "nao binario"]:
@@ -110,10 +116,10 @@ def ler_sexo(msg="Digite o sexo (Masc, Fem, Nao binario): "):
 
 
 def ler_pag(qtd_pag: int, msg="Digite a página (ou aperte 'ENTER' para sair): "):
-    """ Lê um número inteiro que esteja entre zero e a quantidade de páginas, caso nada 
+    """Lê um número inteiro que esteja entre zero e a quantidade de páginas, caso nada
     for digitado, retorna `-1`.
 
-    Entradas: 
+    Entradas:
     - `qtd_pag`: Quantidade de páginas disponíveis para a escolha.
     - `msg`: Mensagem a ser mostrada ao pedir a página.
 
@@ -137,19 +143,19 @@ def ler_pag(qtd_pag: int, msg="Digite a página (ou aperte 'ENTER' para sair): "
 
 
 def calc_imc(peso: float, altura: float):
-    """ Calcula o IMC a partir do peso e da altura, 
-    retorna o IMC com uma casa decimal. """
+    """Calcula o IMC a partir do peso e da altura,
+    retorna o IMC com uma casa decimal."""
     imc = peso / (altura * altura)
     return float("{:.1f}".format(imc))
 
 
 def proximo_id(alunos: list):
-    """ Encontra o último ID encontrado na lista de alunos, adiciona 1 e retorna. """
+    """Encontra o último ID encontrado na lista de alunos, adiciona 1 e retorna."""
     id_aluno = alunos[-1]["id"] + 1
     return id_aluno
 
 
 def salvar(arq: dict):
-    """ Salva os dados em `alunos.json` """
-    with open("alunos.json", mode='w', encoding='UTF-8') as outfile:
+    """Salva os dados em `alunos.json`"""
+    with open("alunos.json", mode="w", encoding="UTF-8") as outfile:
         json.dump(arq, outfile, indent=2)

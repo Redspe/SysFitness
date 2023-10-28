@@ -1,3 +1,8 @@
+"""
+Contém as funções necessárias para os menus e 
+a navegabilidade geral do sistema.
+"""
+
 from funcoes import (
     calc_imc,
     ler_float,
@@ -10,8 +15,14 @@ from funcoes import (
     salvar,
 )
 
+if __name__ == "__main__":
+    from main import sys_fitness
+
+    sys_fitness()
+
 
 def print_menu():
+    """Imprime o menu principal e suas opções"""
     menu = """
 Opções:
 1. Cadastrar novo aluno
@@ -25,6 +36,7 @@ Opções:
 
 
 def cadastrar(arq):
+    """Faz o cadastro de novos alunos"""
     alunos = arq["alunos"]
     while True:
         limpa_tela()
@@ -62,14 +74,14 @@ def cadastrar(arq):
 
 
 def listar_alunos(arq):
-    # Mostra uma lista com todos os alunos cadastrados
+    """Mostra uma lista com todos os alunos cadastrados"""
     limpa_tela()
     alunos = arq["alunos"]
     print_aluno(arq, list(range(len(alunos))))
 
 
 def busca_id(arq):
-    # Faz uma busca usando um ID
+    """Faz uma busca usando um ID"""
     limpa_tela()
 
     alunos = arq["alunos"]
@@ -94,14 +106,26 @@ def busca_id(arq):
             break
 
 
-def filtro_imc():
-    # Mostra todos os alunos com um IMC específico
-    limpa_tela()
-    print("Filtrando...")
-    input("Para continuar aperte 'ENTER'")
+def filtro_imc(arq):
+    """Mostra todos os alunos com um IMC específico"""
+    alunos = arq["alunos"]
+
+    while True:
+        limpa_tela()
+        print("Pesquisa de alunos por IMC")
+
+        imc = ler_int("\nDigite o IMC ou aperte 'ENTER' para sair: ")
+
+        if imc != -1:
+            al_filtrados = [item["id"] for item in alunos if item["IMC"] >= imc]
+            print_aluno(arq, al_filtrados)
+
+        else:
+            return
 
 
 def configuracoes(arq):
+    """Mostra uma página com as configurações do app"""
     config = arq["config"]
 
     alunos_pag = config["alunos_por_pag"]

@@ -31,45 +31,52 @@ from navegabilidade import (
 )
 
 
-#ToDo: Filtrar por IMC
-#ToDo: Receber opção para apenas numeros positivos nas func ler_int, ler_float
-#ToDo: Verificar se o nome já está cadastrado no 'Cadastrar()'
+# ToDo: Filtrar por IMC
+# ToDo: Receber opção para apenas numeros positivos nas func ler_int, ler_float
+# ToDo: Verificar se o nome já está cadastrado no 'Cadastrar()'
 
 
-# Carregar alunos do arquivo
-arq = json.load(open("alunos.json", mode='r', encoding='UTF-8'))
+def sys_fitness():
+    """Executa o programa principal"""
 
-while True:
-    limpa_tela()
-    print_menu()
-    opc = ler_int()
+    # Carregar alunos do arquivo
+    arq = json.load(open("alunos.json", mode="r", encoding="UTF-8"))
 
-    # Navegabilidade
-    if opc == 1:
-        # Cadastrar novo aluno
-        arq = cadastrar(arq)
+    while True:
+        limpa_tela()
+        print_menu()
+        opc = ler_int()
 
-    elif opc == 2:
-        # Imprimir lista de alunos
-        listar_alunos(arq)
+        # Navegabilidade
+        if opc == 1:
+            # Cadastrar novo aluno
+            arq = cadastrar(arq)
 
-    elif opc == 3:
-        # Buscar aluno por id
-        busca_id(arq)
+        elif opc == 2:
+            # Imprimir lista de alunos
+            listar_alunos(arq)
 
-    elif opc == 4:
-        # Filtrar alunos por IMC
-        filtro_imc()
+        elif opc == 3:
+            # Buscar aluno por id
+            busca_id(arq)
 
-    elif opc == 5:
-        # Abrir página de configurações
-        arq = configuracoes(arq)
+        elif opc == 4:
+            # Filtrar alunos por IMC
+            filtro_imc(arq)
 
-    elif opc == 6:
-        # Salvar a lista de alunos
-        salvar(arq)
-        break
+        elif opc == 5:
+            # Abrir página de configurações
+            arq = configuracoes(arq)
 
-    else:
-        print("\nOpção inválida! Escolha um dos números acima.")
-        input("\nPara continuar aperte 'ENTER'")
+        elif opc == 6:
+            # Salvar a lista de alunos
+            salvar(arq)
+            break
+
+        else:
+            print("\nOpção inválida! Escolha um dos números acima.")
+            input("\nPara continuar aperte 'ENTER'")
+
+
+if __name__ == "__main__":
+    sys_fitness()
