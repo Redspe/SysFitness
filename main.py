@@ -31,11 +31,9 @@ from navegabilidade import (
 )
 
 
-# ToDo: Terminar o filtro por IMC
 # Todo: Corrigir a opção sexo no cadastro por letras
 # ToDo: Receber opção para apenas numeros positivos nas func ler_int, ler_float
 # TOdo: Add opção remover aluno
-# todo: Corrigir lista terminando com zero pessoas na última pág.
 # ToDo: Verificar se o nome já está cadastrado no 'Cadastrar()'
 
 

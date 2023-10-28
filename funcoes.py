@@ -3,6 +3,7 @@ Funções gerais para uma aplicação de console como limpar a tela e imprimir o
 """
 import os
 import json
+from math import ceil
 
 
 if __name__ == "__main__":
@@ -30,12 +31,12 @@ def print_cabecalho():
     print(cabecalho)
 
 
-def print_aluno(arq: dict, lista_impressao):
+def print_aluno(arq: dict, lista_impressao: int | list):
     """Imprime os dados de um ou mais alunos.
 
     Entradas:
     - `arq`: Recebe o dicionário que contém todos os alunos e configurações do aplicativo
-    - `lista_impressao`: Int ou lista que será impressa no console.
+    - `lista_impressao`: Número inteiro ou lista de IDs que será impressa no console.
 
     Obs: no caso de uma lista de alunos, a visualização será separada em páginas com qtd de alunos
     por página definida na configuração do arquivo `arq`.
@@ -51,19 +52,19 @@ def print_aluno(arq: dict, lista_impressao):
         config = arq["config"]
 
         alunos_pag = config["alunos_por_pag"]
-        qtd_alu = len(alunos)
-        qtd_pag = qtd_alu // alunos_pag + 1
+        qtd_alu = len(lista_impressao)
+        qtd_pag = ceil(qtd_alu / alunos_pag)
         pag_atual = 1
 
         while True:
-            pag_comeco = (pag_atual - 1) * alunos_pag
-            pag_fim = pag_comeco + (alunos_pag - 1)
+            comeco_pag = (pag_atual - 1) * alunos_pag
+            fim_pag = comeco_pag + (alunos_pag - 1)
 
             limpa_tela()
             print(f"Mostrando a página {pag_atual} de {qtd_pag}\n")
             try:
-                for i in range(pag_comeco, pag_fim + 1):
-                    print_aluno(arq, i)
+                for i in range(comeco_pag, fim_pag + 1):
+                    print_aluno(arq, lista_impressao[i])
             except IndexError:
                 print("Fim da lista!\n")
 
