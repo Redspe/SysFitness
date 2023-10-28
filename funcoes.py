@@ -73,12 +73,22 @@ def print_aluno(arq: dict, lista_impressao: int | list):
                 break
 
 
-def ler_int(msg="Digite um número: "):
-    """Lê uma string contendo um número Inteiro e retorna ele."""
+def ler_int(msg="Digite um número: ", pos=False):
+    """Lê uma string contendo um número Inteiro e retorna ele.
+
+    Argumentos:
+    - `msg`: Mensagem a ser visualizada ao pedir o número.
+    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo 
+    
+    """
     while True:
         num = input(msg)
         if num == "":
             return -1
+
+        if pos and num < 0:
+            print("O valor digitado deve ser maior que zero.")
+            continue
 
         try:
             return int(num)
@@ -86,10 +96,21 @@ def ler_int(msg="Digite um número: "):
             print("Valor inválido! Tente novamente.")
 
 
-def ler_float(msg="Digite um número: "):
-    """Lê uma string contendo um número Real e retorna ele."""
+def ler_float(msg="Digite um número: ", pos=False):
+    """Lê uma string contendo um número Real e retorna ele.
+
+    Argumentos:
+    - `msg`: Mensagem a ser visualizada ao pedir o número.
+    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo 
+    
+    """
     while True:
         num = input(msg)
+
+        if pos and num < 0:
+            print("O valor digitado deve ser maior que zero.")
+            continue
+
         try:
             return float(num)
         except ValueError:

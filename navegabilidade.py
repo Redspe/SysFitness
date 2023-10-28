@@ -87,7 +87,7 @@ def busca_id(arq):
     alunos = arq["alunos"]
 
     print("Busca de aluno por ID")
-    id_aluno = ler_int("Digite o ID: ")
+    id_aluno = ler_int("Digite o ID: ", pos=True)
     if id_aluno == -1:
         return
     while True:
@@ -102,7 +102,7 @@ def busca_id(arq):
             time.sleep(1)
             print("Aluno não encontrado. Verifique o número e tente novamente.\n")
 
-        id_aluno = ler_int("Digite outro ID ou aperte 'ENTER' para sair: ")
+        id_aluno = ler_int("Digite outro ID ou aperte 'ENTER' para sair: ", pos=True)
         if id_aluno == -1:
             break
 
@@ -115,7 +115,7 @@ def filtro_imc(arq):
         limpa_tela()
         print("Pesquisa de alunos por IMC")
 
-        imc = ler_int("\nDigite o IMC ou aperte 'ENTER' para sair: ")
+        imc = ler_int("\nDigite o IMC ou aperte 'ENTER' para sair: ", pos=True)
 
         if imc != -1:
             al_filtrados = [item["id"] for item in alunos if item["IMC"] >= imc]
@@ -135,9 +135,9 @@ def configuracoes(arq):
         limpa_tela()
         print(f"1. Alunos por página: {alunos_pag}")
 
-        opc = ler_int("\nDigite o número para editar ou aperte 'ENTER' para sair: ")
+        opc = ler_int("\nDigite o número para editar ou aperte 'ENTER' para sair: ", pos=True)
         if opc == 1:
-            alunos_pag = ler_int("Digite a quantidade de alunos por página: ")
+            alunos_pag = ler_int("Digite a quantidade de alunos por página: ", pos=True)
 
         elif opc == -1:
             config["alunos_por_pag"] = alunos_pag

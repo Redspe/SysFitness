@@ -45,7 +45,7 @@ def sys_fitness():
     while True:
         limpa_tela()
         print_menu()
-        opc = ler_int()
+        opc = ler_int(pos=True)
 
         # Navegabilidade
         if opc == 1:
