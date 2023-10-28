@@ -31,7 +31,6 @@ from navegabilidade import (
 )
 
 
-# Todo: Corrigir a opção sexo no cadastro por letras
 # ToDo: Receber opção para apenas numeros positivos nas func ler_int, ler_float
 # TOdo: Add opção remover aluno
 # ToDo: Verificar se o nome já está cadastrado no 'Cadastrar()'

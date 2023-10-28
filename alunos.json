@@ -6,7 +6,7 @@
     {
       "id": 0,
       "nome": "Fulano",
-      "sexo": "masc",
+      "sexo": "Masculino",
       "peso": 75.0,
       "altura": 1.8,
       "IMC": 23.1,
@@ -15,7 +15,7 @@
     {
       "id": 1,
       "nome": "Andr\u00e9",
-      "sexo": "masc",
+      "sexo": "Masculino",
       "peso": 85.0,
       "altura": 1.75,
       "IMC": 27.8,
@@ -24,7 +24,7 @@
     {
       "id": 2,
       "nome": "Bruna",
-      "sexo": "fem",
+      "sexo": "Feminino",
       "peso": 65.0,
       "altura": 1.65,
       "IMC": 23.9,
@@ -33,7 +33,7 @@
     {
       "id": 3,
       "nome": "Carla",
-      "sexo": "nao binario",
+      "sexo": "Não Binário",
       "peso": 105.0,
       "altura": 1.7,
       "IMC": 36.3,
@@ -42,7 +42,7 @@
     {
       "id": 4,
       "nome": "Daniel",
-      "sexo": "masc",
+      "sexo": "Masculino",
       "peso": 68.0,
       "altura": 1.78,
       "IMC": 21.5,

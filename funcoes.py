@@ -106,12 +106,20 @@ def ler_str(msg="Digite: "):
             print("Entrada inválida! Digite algo.")
 
 
-def ler_sexo(msg="Digite o sexo (Masc, Fem, Nao binario): "):
+def ler_sexo(msg="Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): "):
     """Lê uma string que deve ser estritamente "masc", "fem" ou "nao binario" e a retorna."""
     while True:
         sexo = input(msg).lower()
-        if sexo in ["masc", "fem", "nao binario"]:
-            return sexo
+        if sexo in ["m", "f", "nb"]:
+            if sexo == "m":
+                return "Masculino"
+
+            elif sexo == "f":
+                return "Feminino"
+
+            elif sexo == "nb":
+                return "Não binário"
+
         else:
             print("Valor inválido! Tente novamente.")
 
