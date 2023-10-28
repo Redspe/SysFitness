@@ -127,6 +127,19 @@ def ler_str(msg="Digite: "):
             print("Entrada vazia! Digite algo.")
 
 
+def ler_s_n(msg="Escolha (S/N): "):
+    """ Retorna `True` se o usuário digitar 'sim' e `False` se digitar 'não' """
+    while True:
+        opc = input(msg).lower()
+
+        if opc in ["s", "sim"]:
+            return True
+        elif opc in ["n", "nao", "não"]:
+            return False
+        else:
+            print("Opção inválida! Digite Sim(S) ou Não(N). ")
+
+
 def ler_sexo(msg="Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): "):
     """Lê uma string que deve ser estritamente "masc", "fem" ou "nao binario" e a retorna."""
     while True:
@@ -186,7 +199,7 @@ def proximo_id(alunos: list):
 
 
 def busca_nome(arq: dict, nome: str):
-    """Procura um nome na lista de alunos, se ele existir retorna `True`"""
+    """Procura um nome na lista de alunos, se ele existir retorna o ID dele"""
     alunos = arq["alunos"]
 
     for item in alunos:
