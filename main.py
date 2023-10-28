@@ -31,11 +31,6 @@ from navegabilidade import (
 )
 
 
-# ToDo: Receber opção para apenas numeros positivos nas func ler_int, ler_float
-# TOdo: Add opção remover aluno
-# ToDo: Verificar se o nome já está cadastrado no 'Cadastrar()'
-
-
 def sys_fitness():
     """Executa o programa principal"""
 

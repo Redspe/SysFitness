@@ -78,20 +78,20 @@ def ler_int(msg="Digite um número: ", pos=False):
 
     Argumentos:
     - `msg`: Mensagem a ser visualizada ao pedir o número.
-    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo 
-    
+    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo
+
     """
     while True:
         num = input(msg)
         if num == "":
             return -1
 
-        if pos and num < 0:
-            print("O valor digitado deve ser maior que zero.")
-            continue
-
         try:
-            return int(num)
+            num = int(num)
+            if pos and num < 0:
+                print("O valor digitado deve ser maior que zero.")
+                continue
+            return num
         except ValueError:
             print("Valor inválido! Tente novamente.")
 
@@ -101,8 +101,8 @@ def ler_float(msg="Digite um número: ", pos=False):
 
     Argumentos:
     - `msg`: Mensagem a ser visualizada ao pedir o número.
-    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo 
-    
+    - `pos`: 'positivo', define se o número a ser lido deve ser estritamente positivo
+
     """
     while True:
         num = input(msg)
@@ -124,7 +124,7 @@ def ler_str(msg="Digite: "):
         if texto != "":
             return texto
         else:
-            print("Entrada inválida! Digite algo.")
+            print("Entrada vazia! Digite algo.")
 
 
 def ler_sexo(msg="Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): "):
@@ -183,6 +183,17 @@ def proximo_id(alunos: list):
     """Encontra o último ID encontrado na lista de alunos, adiciona 1 e retorna."""
     id_aluno = alunos[-1]["id"] + 1
     return id_aluno
+
+
+def busca_nome(arq: dict, nome: str):
+    """Procura um nome na lista de alunos, se ele existir retorna `True`"""
+    alunos = arq["alunos"]
+
+    for item in alunos:
+        if item["nome"].lower() == nome.lower():
+            return item["id"]
+
+    return -1
 
 
 def salvar(arq: dict):

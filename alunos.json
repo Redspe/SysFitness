@@ -33,7 +33,7 @@
     {
       "id": 3,
       "nome": "Carla",
-      "sexo": "Não Binário",
+      "sexo": "N\u00e3o Bin\u00e1rio",
       "peso": 105.0,
       "altura": 1.7,
       "IMC": 36.3,

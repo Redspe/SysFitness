@@ -10,6 +10,7 @@ from funcoes import (
     ler_sexo,
     ler_str,
     limpa_tela,
+    busca_nome,
     print_aluno,
     proximo_id,
     salvar,
@@ -27,7 +28,7 @@ def print_menu():
 Opções:
 1. Cadastrar novo aluno
 2. Imprimir lista de alunos
-3. Buscar aluno por id
+3. Buscar aluno por ID
 4. Filtrar alunos por IMC
 5. Configurações
 6. Salvar dados e sair
@@ -39,33 +40,50 @@ def cadastrar(arq):
     """Faz o cadastro de novos alunos"""
     alunos = arq["alunos"]
     while True:
-        limpa_tela()
-        print("Cadastrando novo aluno... Para cancelar digite 'sair'.\n")
+        def cadastro():
+            limpa_tela()
+            print("Cadastrando novo aluno... Para cancelar digite 'sair'.\n")
 
-        id_aluno = proximo_id(alunos)
-        nome = ler_str("Digite o nome do aluno: ")
-        if nome.lower() == "sair":
-            return arq
-        sexo = ler_sexo("Digite o sexo (Masc, Fem, Nao binario): ")
-        peso = ler_float("Digite o peso em Kg: ")
-        altura = ler_float("Digite a altura em METROS: ")
-        imc = calc_imc(peso, altura)
-        mensalidade = ler_float("Digite a mensalidade: ")
+            id_aluno = proximo_id(alunos)
+            nome = ler_str("Digite o nome do aluno: ")
+            if nome.lower() == "sair":
+                return arq
 
-        aluno = {
-            "id": id_aluno,
-            "nome": nome,
-            "sexo": sexo,
-            "peso": peso,
-            "altura": altura,
-            "IMC": imc,
-            "mensalidade": mensalidade,
-        }
-        alunos.append(aluno)
-        arq["alunos"] = alunos
-        salvar(arq)
+            busca = busca_nome(arq, nome)
+            if busca != -1:
+                ver = ler_str("\nEste nome já está cadastrado. Gostaria de visualizar (S/N)? ")
+                print()
+                if ver.lower() in ["s", "sim"]:
+                    print_aluno(arq, busca)
 
-        print("\nAluno cadastrado com sucesso!")
+                opc = ler_str("Deseja continuar o cadastro? (S/N): ")
+                print()
+                if opc.lower() == "n":
+                    return
+
+            sexo = ler_sexo("Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): ")
+            peso = ler_float("Digite o peso em Kg: ")
+            altura = ler_float("Digite a altura em METROS: ")
+            imc = calc_imc(peso, altura)
+            mensalidade = ler_float("Digite a mensalidade: ")
+
+            aluno = {
+                "id": id_aluno,
+                "nome": nome,
+                "sexo": sexo,
+                "peso": peso,
+                "altura": altura,
+                "IMC": imc,
+                "mensalidade": mensalidade,
+            }
+            alunos.append(aluno)
+            arq["alunos"] = alunos
+            salvar(arq)
+
+            print("\nAluno cadastrado com sucesso!")
+
+        cadastro()
+
         sair = input(
             "\nPara cadastrar outro aluno digite 'C', para sair aperte 'ENTER': "
         ).lower()
