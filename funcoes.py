@@ -30,24 +30,24 @@ def print_cabecalho():
     print(cabecalho)
 
 
-def print_aluno(arq: dict, i):
+def print_aluno(arq: dict, lista_impressao):
     """Imprime os dados de um ou mais alunos.
 
     Entradas:
     - `arq`: Recebe o dicionário que contém todos os alunos e configurações do aplicativo
-    - `i`: Int ou lista que será impressa no console.
+    - `lista_impressao`: Int ou lista que será impressa no console.
 
     Obs: no caso de uma lista de alunos, a visualização será separada em páginas com qtd de alunos
     por página definida na configuração do arquivo `arq`.
     """
     alunos = arq["alunos"]
 
-    if type(i) == int:
-        for item in alunos[i]:
-            print(f"{item.capitalize()}: {alunos[i][item]}")
+    if type(lista_impressao) == int:
+        for item in alunos[lista_impressao]:
+            print(f"{item.capitalize()}: {alunos[lista_impressao][item]}")
         print("\n**************************************************************\n")
 
-    elif type(i) == list:
+    elif type(lista_impressao) == list:
         config = arq["config"]
 
         alunos_pag = config["alunos_por_pag"]
@@ -115,7 +115,7 @@ def ler_sexo(msg="Digite o sexo (Masc, Fem, Nao binario): "):
             print("Valor inválido! Tente novamente.")
 
 
-def ler_pag(qtd_pag: int, msg="Digite a página (ou aperte 'ENTER' para sair): "):
+def ler_pag(qtd_pag: int, msg="Digite a página (ou aperte 'ENTER' para voltar): "):
     """Lê um número inteiro que esteja entre zero e a quantidade de páginas, caso nada
     for digitado, retorna `-1`.
 

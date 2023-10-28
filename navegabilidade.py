@@ -2,7 +2,7 @@
 Contém as funções necessárias para os menus e 
 a navegabilidade geral do sistema.
 """
-
+import time
 from funcoes import (
     calc_imc,
     ler_float,
@@ -62,7 +62,7 @@ def cadastrar(arq):
             "mensalidade": mensalidade,
         }
         alunos.append(aluno)
-        arq[alunos] = alunos
+        arq["alunos"] = alunos
         salvar(arq)
 
         print("\nAluno cadastrado com sucesso!")
@@ -99,6 +99,7 @@ def busca_id(arq):
                 print_aluno(arq, id_aluno)
                 break
         else:
+            time.sleep(1)
             print("Aluno não encontrado. Verifique o número e tente novamente.\n")
 
         id_aluno = ler_int("Digite outro ID ou aperte 'ENTER' para sair: ")
