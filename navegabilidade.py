@@ -11,7 +11,7 @@ from funcoes import (
     ler_sexo,
     ler_str,
     limpa_tela,
-    busca_nome,
+    busca_por_nome,
     print_aluno,
     proximo_id,
     salvar,
@@ -28,11 +28,14 @@ def print_menu():
     menu = """
 Opções:
 1. Cadastrar novo aluno
-2. Imprimir lista de alunos
+2. Mostrar lista de alunos
 3. Buscar aluno por ID
-4. Filtrar alunos por IMC
-5. Configurações
-6. Salvar dados e sair
+4. Buscar aluno por NOME
+5. Filtrar alunos por IMC
+
+6. Configurações
+
+7. Salvar dados e sair
 """
     print(menu)
 
@@ -47,11 +50,11 @@ def cadastrar(arq):
             print("Cadastrando novo aluno... Para cancelar digite 'sair'.\n")
 
             id_aluno = proximo_id(alunos)
-            nome = ler_str("Digite o nome do aluno: ").capitalize()
-            if nome.lower() == "sair":
+            nome = ler_str("Digite o nome do aluno: ", sair=True)
+            if nome == -1:
                 return arq
 
-            busca = busca_nome(arq, nome)
+            busca = busca_por_nome(arq, nome)
             if busca != -1:
                 ver = ler_s_n(
                     "\nEste nome já está cadastrado. Gostaria de visualizar (S/N)? "
@@ -128,6 +131,33 @@ def busca_id(arq):
 
         id_aluno = ler_int("Digite outro ID ou aperte 'ENTER' para sair: ", pos=True)
         if id_aluno == -1:
+            break
+
+
+def busca_nome(arq):
+    """Item do menu para busca de um aluno a partir do nome"""
+    limpa_tela()
+
+    print("Busca de aluno por NOME")
+    nome_aluno = ler_str("Digite o NOME ou aperte 'ENTER' para sair: ", sair=True)
+    if nome_aluno == -1:
+        return
+
+    while True:
+        limpa_tela()
+        print("\nBuscando...")
+
+        id_resposta = busca_por_nome(arq, nome_aluno)
+        if id_resposta != -1:
+            print("Aluno encontrado!\n")
+            print_aluno(arq, id_resposta)
+
+        else:
+            time.sleep(1)
+            print("Aluno não encontrado. Verifique o nome e tente novamente.\n")
+
+        nome_aluno = ler_str("Digite outro NOME ou aperte 'ENTER' para sair: ", sair=True)
+        if nome_aluno == -1:
             break
 
 

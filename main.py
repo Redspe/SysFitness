@@ -22,6 +22,7 @@ tenha as seguintes funcionalidades:
 from funcoes import carregar_alunos, ler_int, limpa_tela, salvar
 from navegabilidade import (
     busca_id,
+    busca_nome,
     cadastrar,
     configuracoes,
     filtro_imc,
@@ -51,18 +52,22 @@ def sys_fitness():
             listar_alunos(arq)
 
         elif opc == 3:
-            # Buscar aluno por id
+            # Buscar aluno por ID
             busca_id(arq)
 
         elif opc == 4:
+            # Buscar aluno por NOME
+            busca_nome(arq)
+
+        elif opc == 5:
             # Filtrar alunos por IMC
             filtro_imc(arq)
 
-        elif opc == 5:
+        elif opc == 6:
             # Abrir página de configurações
             arq = configuracoes(arq)
 
-        elif opc == 6:
+        elif opc == 7:
             # Salvar a lista de alunos
             salvar(arq)
             break

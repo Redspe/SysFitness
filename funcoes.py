@@ -122,14 +122,23 @@ def ler_float(msg="Digite um número: ", pos=False):
             print("Valor inválido! Tente novamente.")
 
 
-def ler_str(msg="Digite: "):
-    """Lê uma string não vazia e retorna ela."""
+def ler_str(msg="Digite: ", sair=False):
+    """Lê uma string não vazia e retorna ela.
+    
+    Entradas:
+    - `msg`: Mensagem a ser mostrada ao pedir o texto.
+    - `sair`: Se ao apertar 'ENTER' sem ter escrito nada deve-se retornar `-1`.
+
+    """
     while True:
         texto = input(msg)
         if texto != "":
             return texto
         else:
-            print("Entrada vazia! Digite algo.")
+            if sair:
+                return -1
+            else:
+                print("Entrada vazia! Digite algo.")
 
 
 def ler_s_n(msg="Escolha (S/N): "):
@@ -206,7 +215,7 @@ def proximo_id(alunos: list):
         return 1
 
 
-def busca_nome(arq: dict, nome: str):
+def busca_por_nome(arq: dict, nome: str):
     """Procura um nome na lista de alunos, se ele existir retorna o ID dele"""
     alunos = arq["alunos"]
 
