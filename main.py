@@ -19,8 +19,7 @@ tenha as seguintes funcionalidades:
 ■ etc.
 """
 
-import json
-from funcoes import ler_int, limpa_tela, salvar
+from funcoes import carregar_alunos, ler_int, limpa_tela, salvar
 from navegabilidade import (
     busca_id,
     cadastrar,
@@ -35,7 +34,7 @@ def sys_fitness():
     """Executa o programa principal"""
 
     # Carregar alunos do arquivo
-    arq = json.load(open("alunos.json", mode="r", encoding="UTF-8"))
+    arq = carregar_alunos()
 
     while True:
         limpa_tela()

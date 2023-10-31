@@ -43,12 +43,12 @@ def print_aluno(arq: dict, lista_impressao: int | list):
     """
     alunos = arq["alunos"]
 
-    if type(lista_impressao) == int:
+    if isinstance(lista_impressao, int):
         for item in alunos[lista_impressao]:
             print(f"{item.capitalize()}: {alunos[lista_impressao][item]}")
         print("\n**************************************************************\n")
 
-    elif type(lista_impressao) == list:
+    elif isinstance(lista_impressao, list):
         config = arq["config"]
 
         alunos_pag = config["alunos_por_pag"]
@@ -92,6 +92,7 @@ def ler_int(msg="Digite um número: ", pos=False):
                 print("O valor digitado deve ser maior que zero.")
                 continue
             return num
+
         except ValueError:
             print("Valor inválido! Tente novamente.")
 
@@ -106,13 +107,17 @@ def ler_float(msg="Digite um número: ", pos=False):
     """
     while True:
         num = input(msg)
-
-        if pos and num < 0:
-            print("O valor digitado deve ser maior que zero.")
-            continue
+        if num == "":
+            return -1
 
         try:
-            return float(num)
+            num = float(num)
+            if pos and num < 0:
+                print("O valor digitado deve ser maior que zero.")
+                continue
+
+            return num
+
         except ValueError:
             print("Valor inválido! Tente novamente.")
 
@@ -128,7 +133,7 @@ def ler_str(msg="Digite: "):
 
 
 def ler_s_n(msg="Escolha (S/N): "):
-    """ Retorna `True` se o usuário digitar 'sim' e `False` se digitar 'não' """
+    """Retorna `True` se o usuário digitar 'sim' e `False` se digitar 'não'"""
     while True:
         opc = input(msg).lower()
 
@@ -194,8 +199,11 @@ def calc_imc(peso: float, altura: float):
 
 def proximo_id(alunos: list):
     """Encontra o último ID encontrado na lista de alunos, adiciona 1 e retorna."""
-    id_aluno = alunos[-1]["id"] + 1
-    return id_aluno
+    try:
+        id_aluno = alunos[-1]["id"] + 1
+        return id_aluno
+    except IndexError:
+        return 1
 
 
 def busca_nome(arq: dict, nome: str):
@@ -207,6 +215,22 @@ def busca_nome(arq: dict, nome: str):
             return item["id"]
 
     return -1
+
+
+def carregar_alunos():
+    """Carega as informações contidas no arquivo `alunos.json`. Caso o arq.
+    não exista, cria-se um novo automaticamente."""
+    try:
+        return json.load(open("alunos.json", mode="r", encoding="UTF-8"))
+
+    except FileNotFoundError:
+        novo = {"config": {"alunos_por_pag": 3}, "alunos": []}
+
+        with open("alunos.json", mode="w", encoding="UTF-8") as outfile:
+            json.dump(novo, outfile, indent=2)
+
+        with open("alunos.json", mode="r", encoding="UTF-8") as arquivo:
+            return json.load(arquivo)
 
 
 def salvar(arq: dict):

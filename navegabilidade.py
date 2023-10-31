@@ -47,7 +47,7 @@ def cadastrar(arq):
             print("Cadastrando novo aluno... Para cancelar digite 'sair'.\n")
 
             id_aluno = proximo_id(alunos)
-            nome = ler_str("Digite o nome do aluno: ")
+            nome = ler_str("Digite o nome do aluno: ").capitalize()
             if nome.lower() == "sair":
                 return arq
 
