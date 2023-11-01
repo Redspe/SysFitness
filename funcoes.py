@@ -43,29 +43,32 @@ def print_aluno(arq: dict, lista_impressao: int | list):
     """
     alunos = arq["alunos"]
 
-    if isinstance(lista_impressao, int):
-        for item in alunos[lista_impressao]:
+    if isinstance(lista_impressao, int):  # Se a 'lista_impressão' for um inteiro
+        for item in alunos[lista_impressao]:  # Imprime cada item do dicionário
             print(f"{item.capitalize()}: {alunos[lista_impressao][item]}")
         print("\n**************************************************************\n")
 
-    elif isinstance(lista_impressao, list):
+    elif isinstance(lista_impressao, list):  # Se for uma lista
         config = arq["config"]
 
+        # Prepara para a visualização em páginas
         alunos_pag = config["alunos_por_pag"]
         qtd_alu = len(lista_impressao)
         qtd_pag = ceil(qtd_alu / alunos_pag)
         pag_atual = 1
 
         while True:
-            comeco_pag = (pag_atual - 1) * alunos_pag
-            fim_pag = comeco_pag + (alunos_pag - 1)
+            comeco_pag = (pag_atual - 1) * alunos_pag  # Primeiro item da página
+            fim_pag = comeco_pag + (alunos_pag - 1)  # Último item da página
 
             limpa_tela()
             print(f"Mostrando a página {pag_atual} de {qtd_pag}\n")
             try:
+                # Mostra do primeiro ao último item da página
                 for i in range(comeco_pag, fim_pag + 1):
                     print_aluno(arq, lista_impressao[i])
-            except IndexError:
+
+            except IndexError:  # Caso não tenha mais nenhum item
                 print("Fim da lista!\n")
 
             pag_atual = ler_pag(qtd_pag)
@@ -124,7 +127,7 @@ def ler_float(msg="Digite um número: ", pos=False):
 
 def ler_str(msg="Digite: ", sair=False):
     """Lê uma string não vazia e retorna ela.
-    
+
     Entradas:
     - `msg`: Mensagem a ser mostrada ao pedir o texto.
     - `sair`: Se ao apertar 'ENTER' sem ter escrito nada deve-se retornar `-1`.
@@ -148,8 +151,10 @@ def ler_s_n(msg="Escolha (S/N): "):
 
         if opc in ["s", "sim"]:
             return True
+
         elif opc in ["n", "nao", "não"]:
             return False
+
         else:
             print("Opção inválida! Digite Sim(S) ou Não(N). ")
 
@@ -203,7 +208,7 @@ def calc_imc(peso: float, altura: float):
     """Calcula o IMC a partir do peso e da altura,
     retorna o IMC com uma casa decimal."""
     imc = peso / (altura * altura)
-    return float("{:.1f}".format(imc))
+    return float(f"{imc:.1f}")
 
 
 def proximo_id(alunos: list):
@@ -211,6 +216,7 @@ def proximo_id(alunos: list):
     try:
         id_aluno = alunos[-1]["id"] + 1
         return id_aluno
+
     except IndexError:
         return 1
 
@@ -227,7 +233,7 @@ def busca_por_nome(arq: dict, nome: str):
 
 
 def carregar_alunos():
-    """Carega as informações contidas no arquivo `alunos.json`. Caso o arq.
+    """Carega as informações contidas no arquivo `alunos.json`. Caso o arquivo
     não exista, cria-se um novo automaticamente."""
     try:
         return json.load(open("alunos.json", mode="r", encoding="UTF-8"))

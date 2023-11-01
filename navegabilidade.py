@@ -49,12 +49,12 @@ def cadastrar(arq):
             limpa_tela()
             print("Cadastrando novo aluno... Para cancelar digite 'sair'.\n")
 
-            id_aluno = proximo_id(alunos)
+            id_aluno = proximo_id(alunos)  # Pega o próximo ID da lista
             nome = ler_str("Digite o nome do aluno: ", sair=True)
             if nome == -1:
                 return arq
 
-            busca = busca_por_nome(arq, nome)
+            busca = busca_por_nome(arq, nome)  # Vê se o nome já está cadastrado
             if busca != -1:
                 ver = ler_s_n(
                     "\nEste nome já está cadastrado. Gostaria de visualizar (S/N)? "
@@ -76,6 +76,7 @@ def cadastrar(arq):
             imc = calc_imc(peso, altura)
             mensalidade = ler_float("Digite a mensalidade: ")
 
+            # Junta as variáveis em um dicionário
             aluno = {
                 "id": id_aluno,
                 "nome": nome,
@@ -117,6 +118,7 @@ def busca_id(arq):
     id_aluno = ler_int("Digite o ID: ", pos=True)
     if id_aluno == -1:
         return
+
     while True:
         limpa_tela()
         print("\nBuscando...")
@@ -156,7 +158,9 @@ def busca_nome(arq):
             time.sleep(1)
             print("Aluno não encontrado. Verifique o nome e tente novamente.\n")
 
-        nome_aluno = ler_str("Digite outro NOME ou aperte 'ENTER' para sair: ", sair=True)
+        nome_aluno = ler_str(
+            "Digite outro NOME ou aperte 'ENTER' para sair: ", sair=True
+        )
         if nome_aluno == -1:
             break
 
