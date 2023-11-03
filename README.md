@@ -8,6 +8,8 @@ Objetivo:
 
 ### Cadastrar alunos novos
 - É possível cadastrar alunos de uma maneira rápida e intuitiva.
+### Editar/Excluir alunos
+- Agora você tem a opção de editar os alunos, ou exclui-los! Basta buscar pelo nome ou pelo ID e escolher a opção que desejar. 
 ### Imprimir uma lista com os alunos
 - Utilização de páginas para visualização mais fácil e eficiente.
 ### Buscar aluno por id

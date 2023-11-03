@@ -1,4 +1,10 @@
-""" Considere um sistema de academia que organize e
+""" 
+Projeto:
+- Autor: Rafael Herrera
+- GitHub: https://github.com/Redspe/SysFitness
+
+Objetivo:
+Considere um sistema de academia que organize e
 armazene os seguintes dados dos alunos:
 - id, nome, sexo, peso, altura, mensalidade.
 - utiliza uma estrutura de lista de dicionários para
