@@ -125,7 +125,8 @@ def busca_id(arq):
         for item in alunos:
             if item.get("id") == id_aluno:
                 print("Aluno encontrado!\n")
-                print_aluno(arq, id_aluno)
+                indice_aluno = alunos.index(item)
+                print_aluno(arq, indice_aluno)
                 break
         else:
             time.sleep(1)
@@ -149,10 +150,10 @@ def busca_nome(arq):
         limpa_tela()
         print("\nBuscando...")
 
-        id_resposta = busca_por_nome(arq, nome_aluno)
-        if id_resposta != -1:
+        indice_aluno = busca_por_nome(arq, nome_aluno)
+        if indice_aluno != -1:
             print("Aluno encontrado!\n")
-            print_aluno(arq, id_resposta)
+            print_aluno(arq, indice_aluno)
 
         else:
             time.sleep(1)
@@ -176,7 +177,7 @@ def filtro_imc(arq):
         imc = ler_float("Digite o IMC ou aperte 'ENTER' para sair: ", pos=True)
 
         if imc != -1:
-            al_filtrados = [item["id"] for item in alunos if item["IMC"] >= imc]
+            al_filtrados = [alunos.index(item) for item in alunos if item["IMC"] >= imc]
             print_aluno(arq, al_filtrados)
 
         else:

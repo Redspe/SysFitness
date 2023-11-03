@@ -4,30 +4,12 @@
   },
   "alunos": [
     {
-      "id": 0,
-      "nome": "Fulano",
-      "sexo": "Masculino",
-      "peso": 75.0,
-      "altura": 1.8,
-      "IMC": 23.1,
-      "mensalidade": 100.0
-    },
-    {
       "id": 1,
       "nome": "Andr\u00e9",
       "sexo": "Masculino",
       "peso": 85.0,
       "altura": 1.75,
       "IMC": 27.8,
-      "mensalidade": 110.0
-    },
-    {
-      "id": 2,
-      "nome": "Bruna",
-      "sexo": "Feminino",
-      "peso": 65.0,
-      "altura": 1.65,
-      "IMC": 23.9,
       "mensalidade": 110.0
     },
     {

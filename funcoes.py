@@ -227,7 +227,7 @@ def busca_por_nome(arq: dict, nome: str):
 
     for item in alunos:
         if item["nome"].lower() == nome.lower():
-            return item["id"]
+            return alunos.index(item)
 
     return -1
 
