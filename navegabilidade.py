@@ -5,6 +5,7 @@ a navegabilidade geral do sistema.
 import time
 from funcoes import (
     calc_imc,
+    editar_aluno,
     ler_float,
     ler_int,
     ler_s_n,
@@ -14,7 +15,7 @@ from funcoes import (
     busca_por_nome,
     print_aluno,
     proximo_id,
-    salvar,
+    salvar
 )
 
 if __name__ == "__main__":
@@ -127,6 +128,7 @@ def busca_id(arq):
                 print("Aluno encontrado!\n")
                 indice_aluno = alunos.index(item)
                 print_aluno(arq, indice_aluno)
+                editar_aluno(arq, indice_aluno)
                 break
         else:
             time.sleep(1)
