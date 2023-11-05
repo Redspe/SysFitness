@@ -236,29 +236,37 @@ def editar_aluno(arq, indice_aluno):
     """Possibilita a edição ou exclusão de alunos da base de dados"""
     alunos = arq["alunos"]
 
-    opc = ler_int("Opções: 1-SAIR, 2-Editar Aluno, 3-Excluir Aluno\nEscolha uma: ", pos=True)
-
-    if opc == 1:
-        return arq
-
-    elif opc == 2:
-        aluno = alunos[indice_aluno]
-        aluno["nome"] = ler_str("Digite o Nome: ")
-        aluno["sexo"] = ler_sexo(
-            "Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): "
+    while True:
+        opc = ler_int(
+            "\nOpções: 1-Voltar, 2-Editar Aluno, 3-Excluir Aluno\nEscolha uma: ",
+            pos=True,
         )
-        peso = ler_float("Digite o peso em Kg: ")
-        aluno["peso"] = peso
-        altura = ler_float("Digite a altura em METROS: ")
-        aluno["altura"] = altura
-        aluno["IMC"] = calc_imc(peso, altura)
-        aluno["mensalidade"] = ler_float("Digite a mensalidade: ")
 
-    elif opc == 3:
-        excluir = ler_s_n("Tem certeza que deseja excluir este aluno? (S/N): ")
-        if excluir:
-            alunos.pop(indice_aluno)
-            print("Aluno excluído com sucesso!")
+        if opc == 1:
+            salvar(arq)
+            return arq
+
+        elif opc == 2:
+            aluno = alunos[indice_aluno]
+            aluno["nome"] = ler_str("Digite o Nome: ")
+            aluno["sexo"] = ler_sexo(
+                "Digite o sexo (M: Masculino, F: Feminino, NB: Não Binário): "
+            )
+            peso = ler_float("Digite o peso em Kg: ")
+            aluno["peso"] = peso
+            altura = ler_float("Digite a altura em METROS: ")
+            aluno["altura"] = altura
+            aluno["IMC"] = calc_imc(peso, altura)
+            aluno["mensalidade"] = ler_float("Digite a mensalidade: ")
+
+        elif opc == 3:
+            excluir = ler_s_n("Tem certeza que deseja excluir este aluno? (S/N): ")
+            if excluir:
+                alunos.pop(indice_aluno)
+                print("Aluno excluído com sucesso!")
+
+        else:
+            print("Opção inválida. Digite 1, 2 ou 3.")
 
 
 def carregar_alunos():

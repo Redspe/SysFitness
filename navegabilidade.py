@@ -156,6 +156,7 @@ def busca_nome(arq):
         if indice_aluno != -1:
             print("Aluno encontrado!\n")
             print_aluno(arq, indice_aluno)
+            editar_aluno(arq, indice_aluno)
 
         else:
             time.sleep(1)
